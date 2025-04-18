@@ -35,7 +35,7 @@ cd $(dirname "${REPO_PATH}")
 
 # attempt to fetch desired bpf-next repo snapshot
 if [[ -n "${SNAPSHOT_URL}" && "${FETCH_DEPTH}" -le 0 ]]; then
-    wget -U 'BPFCIBot/1.0 (bpf@vger.kernel.org)' -nv ${SNAPSHOT_URL} || true
+    wget -nv ${SNAPSHOT_URL} || true
     PRESERVE_DOT_GIT=
 else
     PRESERVE_DOT_GIT=true
@@ -51,7 +51,7 @@ else
         FETCH_DEPTH=1
     fi
 
-    git clone --depth ${FETCH_DEPTH} ${KERNEL_ORIGIN} ${REPO_PATH}
+    git clone --depth ${FETCH_DEPTH} --branch ${KERNEL_BRANCH} ${KERNEL_ORIGIN} ${REPO_PATH}
 
     cd "${REPO_PATH}"
     # check if desired SHA exists
