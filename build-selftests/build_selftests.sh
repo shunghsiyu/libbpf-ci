@@ -11,6 +11,7 @@ KERNEL_ROOT="$(realpath $3)"
 export KBUILD_OUTPUT="${KBUILD_OUTPUT:-${KERNEL_ROOT}}"
 export VMLINUX_BTF="${VMLINUX_BTF:-${KBUILD_OUTPUT}/vmlinux}"
 export VMLINUX_H="${VMLINUX_H:-}"
+export KDIR="${KDIR:-}"
 
 ARCH="$(platform_to_kernel_arch ${TARGET_ARCH})"
 CROSS_COMPILE=""
@@ -43,6 +44,7 @@ MAKE_OPTS=(
 	LLVM_STRIP=llvm-strip-${LLVM_VERSION}
 	VMLINUX_BTF=${VMLINUX_BTF}
 	VMLINUX_H=${VMLINUX_H}
+	KDIR=${KDIR}
 )
 
 SELF_OPTS=(-C "${KERNEL_ROOT}/tools/testing/selftests/bpf")
