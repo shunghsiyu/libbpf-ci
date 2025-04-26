@@ -46,12 +46,10 @@ MAKE_OPTS=$(cat <<EOF
 	KDIR=${KDIR}
 EOF
 )
-SELF_OPTS=$(cat <<EOF
-	-C ${KERNEL_ROOT}/tools/testing/selftests/bpf
-EOF
-)
+
 make ${MAKE_OPTS} -C ${KERNEL_ROOT} headers
-make ${MAKE_OPTS} ${SELF_OPTS} clean
-make ${MAKE_OPTS} ${SELF_OPTS} -j $(kernel_build_make_jobs) ${SELFTESTS_BPF_TARGETS:-}
+cd ${KERNEL_ROOT}/tools/testing/selftests/bpf
+make ${MAKE_OPTS} clean
+make ${MAKE_OPTS} -j $(kernel_build_make_jobs) ${SELFTESTS_BPF_TARGETS:-}
 
 foldable end build_selftests
