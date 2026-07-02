@@ -16,6 +16,10 @@ if [[ "${ID}" == "ubuntu" ]]; then
     curl -O https://apt.llvm.org/llvm.sh
     chmod +x llvm.sh
     sudo ./llvm.sh ${LLVM_VERSION} all
+    # On aarch64 the llvm package wasn't pulled with llvm.sh, and thus
+    # llvm-strip binary was not available. Make sure it is installed.
+    sudo -E apt-get install --no-install-recommends -y \
+        llvm-${LLVM_VERSION}
 elif [[ "${ID}" == "debian" ]]; then
     # For Debian, install packages directly from repos
     # Recent debian considers SHA1 insecure, and llvm.sh hasn't been fixed yet
