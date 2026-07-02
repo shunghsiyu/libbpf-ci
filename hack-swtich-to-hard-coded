@@ -1,0 +1,35 @@
+HACK: Swtich to hard-coded snapshot name to works for stable/linux.git
+
+From: Shung-Hsi Yu <shung-hsi.yu@suse.com>
+
+
+---
+ get-linux-source/checkout_latest_kernel.sh |    6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/get-linux-source/checkout_latest_kernel.sh b/get-linux-source/checkout_latest_kernel.sh
+index f59de43..97ac417 100755
+--- a/get-linux-source/checkout_latest_kernel.sh
++++ b/get-linux-source/checkout_latest_kernel.sh
+@@ -20,7 +20,7 @@ if [[ "${KERNEL_BRANCH}" = 'master' ]]; then
+ else
+   LINUX_SHA=${KERNEL_BRANCH}
+ fi
+-SNAPSHOT_URL=${KERNEL_ORIGIN}/snapshot/bpf-next-${LINUX_SHA}.tar.gz
++SNAPSHOT_URL=${KERNEL_ORIGIN}/snapshot/linux-${LINUX_SHA}.tar.gz
+ 
+ echo LINUX_SHA = ${LINUX_SHA}
+ echo SNAPSHOT_URL = ${SNAPSHOT_URL}
+@@ -41,10 +41,10 @@ else
+     PRESERVE_DOT_GIT=true
+ fi
+ 
+-tarball=bpf-next-${LINUX_SHA}.tar.gz
++tarball=linux-${LINUX_SHA}.tar.gz
+ if [[ -f "$tarball" ]]; then
+     tar xf "$tarball" --totals
+-    mv bpf-next-${LINUX_SHA} $(basename ${REPO_PATH})
++    mv linux-${LINUX_SHA} $(basename ${REPO_PATH})
+ else
+     # FETCH_DEPTH can be 0 here in case snapshot download has failed
+     if [ "${FETCH_DEPTH}" -le 0 ]; then

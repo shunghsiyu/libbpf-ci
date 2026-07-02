@@ -1,0 +1,5 @@
+# This series applies on Git commit fe465b71b0ba5c9952e01cff81689d08f1140e4a
+hack-swtich-to-hard-coded
+hack-fix-download-linux-source
+allow-overriding-kdir-when
+try-a-different-way-to-build
