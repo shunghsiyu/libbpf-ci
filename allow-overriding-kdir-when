@@ -11,7 +11,7 @@ Signed-off-by: Shung-Hsi Yu <shung-hsi.yu@suse.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/build-selftests/build_selftests.sh b/build-selftests/build_selftests.sh
-index 03049bb..6f0467b 100755
+index 936a594..604bbc8 100755
 --- a/build-selftests/build_selftests.sh
 +++ b/build-selftests/build_selftests.sh
 @@ -11,6 +11,7 @@ KERNEL_ROOT="$(realpath $3)"
@@ -22,11 +22,11 @@ index 03049bb..6f0467b 100755
  
  ARCH="$(platform_to_kernel_arch ${TARGET_ARCH})"
  CROSS_COMPILE=""
-@@ -42,6 +43,7 @@ MAKE_OPTS=$(cat <<EOF
+@@ -43,6 +44,7 @@ MAKE_OPTS=(
  	LLVM_STRIP=llvm-strip-${LLVM_VERSION}
  	VMLINUX_BTF=${VMLINUX_BTF}
  	VMLINUX_H=${VMLINUX_H}
 +	KDIR=${KDIR}
- EOF
  )
- SELF_OPTS=$(cat <<EOF
+ 
+ SELF_OPTS=(-C "${KERNEL_ROOT}/tools/testing/selftests/bpf")
