@@ -37,6 +37,31 @@ print_notice() {
   __print notice $1 $2
 }
 
+# Run a command, retrying with exponential backoff if it fails. Meant for
+# network operations against hosts that are intermittently unreachable
+# (e.g. git.kernel.org refusing connections or returning HTTP 502).
+# $1 - maximum number of attempts
+# $2 - delay in seconds before the first retry, doubled after each retry
+# $@ - command to run
+retry() {
+  local attempts=$1
+  local delay=$2
+  shift 2
+
+  local i rc
+  for (( i = 1; ; i++ )); do
+    "$@" && return 0
+    rc=$?
+    if (( i >= attempts )); then
+      echo "::error::'$*' failed after ${attempts} attempts (exit code ${rc})"
+      return "$rc"
+    fi
+    echo "::warning::'$*' failed (exit code ${rc}), attempt ${i}/${attempts}; retrying in ${delay}s"
+    sleep "$delay"
+    delay=$(( delay * 2 ))
+  done
+}
+
 # No arguments
 llvm_default_version() {
   echo "17"

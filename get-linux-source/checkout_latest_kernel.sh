@@ -2,6 +2,8 @@
 
 set -xeuo pipefail
 
+source "$(cd "$(dirname "$0")" && pwd)/../helpers.sh"
+
 FETCH_DEPTH=${FETCH_DEPTH:-1}
 REFERENCE_REPO_PATH=${REFERENCE_REPO_PATH:-/libbpfci/mirrors/linux}
 
@@ -31,5 +33,5 @@ if [ ${FETCH_DEPTH} -ge 1 ]; then
     clone_args+=(--depth ${FETCH_DEPTH})
 fi
 
-git clone "${clone_args[@]}" ${KERNEL_ORIGIN} ${REPO_PATH}
+retry 5 15 git clone "${clone_args[@]}" ${KERNEL_ORIGIN} ${REPO_PATH}
 
