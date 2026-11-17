@@ -39,7 +39,7 @@ print_notice() {
 
 # Run a command, retrying with exponential backoff if it fails. Meant for
 # network operations against hosts that are intermittently unreachable
-# (e.g. git.kernel.org refusing connections or returning HTTP 502).
+# (e.g. a git server refusing connections or returning HTTP 502).
 # $1 - maximum number of attempts
 # $2 - delay in seconds before the first retry, doubled after each retry
 # $@ - command to run

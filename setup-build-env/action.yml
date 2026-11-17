@@ -8,7 +8,7 @@ inputs:
   pahole-origin:
     description: 'pahole repo'
     required: true
-    default: 'https://git.kernel.org/pub/scm/devel/pahole/pahole.git'
+    default: 'https://kernel.googlesource.com/pub/scm/devel/pahole/pahole.git'
   llvm-version:
     description: 'llvm version'
     required: false

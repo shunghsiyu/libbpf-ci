@@ -3,7 +3,7 @@ description: 'Download linux source'
 inputs:
   repo:
     description: 'source repo'
-    default: 'https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git'
+    default: 'https://kernel.googlesource.com/pub/scm/linux/kernel/git/bpf/bpf-next.git'
     required: false
   rev:
     description: 'source rev'

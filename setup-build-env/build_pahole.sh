@@ -3,7 +3,7 @@
 set -eu
 
 PAHOLE_BRANCH=${PAHOLE_BRANCH:-master}
-PAHOLE_ORIGIN=${PAHOLE_ORIGIN:-https://git.kernel.org/pub/scm/devel/pahole/pahole.git}
+PAHOLE_ORIGIN=${PAHOLE_ORIGIN:-https://kernel.googlesource.com/pub/scm/devel/pahole/pahole.git}
 
 if [ "$PAHOLE_BRANCH" == "none" ]; then
    echo "WARNING: will not build and install pahole, because 'pahole: none' was passed to the action call"

@@ -5,7 +5,7 @@ set -x -euo pipefail
 export GITHUB_ACTION_PATH=${GITHUB_ACTION_PATH:-$(pwd)}
 
 export PAHOLE_BRANCH=${PAHOLE_BRANCH:-master}
-export PAHOLE_ORIGIN=${PAHOLE_ORIGIN:-https://git.kernel.org/pub/scm/devel/pahole/pahole.git}
+export PAHOLE_ORIGIN=${PAHOLE_ORIGIN:-https://kernel.googlesource.com/pub/scm/devel/pahole/pahole.git}
 export GCC_VERSION=${GCC_VERSION:-15}
 export LLVM_VERSION=${LLVM_VERSION:-21}
 export TARGET_ARCH=${TARGET_ARCH:-$(uname -m)}
